@@ -35,4 +35,15 @@ angular.module('todoController', [])
 			}
 		};
 
+
+		$scope.deleteTodo = function(id) {		
+			$scope.loading = true;		
+ 		
+ 			Todos.delete(id)		
+ 		// if successful creation, call our get function to get all the new todos		
+ 				.success(function(data) {		
+ 					$scope.loading = false;		
+ 					$scope.todos = data; // assign our new list of todos		
+				});		
+ 		};
 	}]);

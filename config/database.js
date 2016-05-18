@@ -1,5 +1,4 @@
 module.exports = {
-
 	// the database url to connect!
-	url: 'mongodb://ec2-54-88-127-104.compute-1.amazonaws.com:27017/dummyDB'
+	url: 'mongodb://ec2-52-53-196-72.us-west-1.compute.amazonaws.com:27017/todoDB'
 }
