@@ -47,6 +47,23 @@ angular.module('todoController', [])
 				});		
  		};
 
+		$scope.checkbox = function(id,done){
+			console.log(done);
+
+
+			Todos.update(id, done)
+
+			.success(function(data){
+				$scope.loading = false;
+				$scope.formData = {}; // clear the form so our user is ready to enter another
+				$scope.todos = data;
+			});
+
+
+
+		};
+
+
 
 
 	}]);
