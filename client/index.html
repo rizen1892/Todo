@@ -41,9 +41,12 @@
 			<div class="col-sm-4 col-sm-offset-4">
 
 				<div class="checkbox"  ng-repeat="todo in todos">
-                                  <label>
-                                  <input type="checkbox" ng-click = "deleteTodo(todo._id)"> {{ todo.text }}
-                                  </label>
+                              
+				<label>
+                                <input type="checkbox" >  {{ todo.text }}  
+				<input type = "button" value = "Delete"  ng-click = "deleteTodo(todo._id)"></input>  
+			
+				</label>
                                  </div>
                              
 				<p class="text-center" ng-show="loading">
