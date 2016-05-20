@@ -39,6 +39,23 @@ module.exports = function(app) {
 
 	});
 
+
+	app.post('/api/update', function(req, res) {
+		console.log(req.body);
+		
+		Todo.findByIdAndUpdate(
+			req.body._id, {
+				text : req.body.test,
+				s : req.body.snooze
+		}, function(err, todo) {
+			if (err)
+				res.send(err);
+			else 
+				res.json({"success":true});
+		});
+		
+	});
+
 	// delete a todo
     app.delete('/api/todos/:todo_id', function(req, res) {
         Todo.remove({

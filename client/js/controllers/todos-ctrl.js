@@ -66,13 +66,35 @@ angular.module('todoController', [])
 
 
 
-$scope.check = function(){
+		$scope.check = function(){
 			if($scope.checked = false ){
 				$scope.checked = true; 
 			}
 			else{
 				$scope.checked = false; 
 			}
+		}
+
+		$scope.s = function(todoData) {
+			todoData.s = !todoData.s;
+		
+			Todos.update(todoData)
+				.success(function(res){
+					$scope.loading = false;	//turn off loading
+					console.log(res);
+				});
+		}
+
+		$scope.update = function(data) {
+			if(data.done) 
+				$scope.todoDone++;
+			else
+				$scope.todoDone--;
+			// console.log(data);
+			Todos.update(data)
+				.success(function(res){
+					console.log(res);
+				});
 		}
 
 

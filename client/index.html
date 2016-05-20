@@ -46,21 +46,25 @@
 		<!-- TODO LIST -->
 		<div id="todo-list" class="row">
 			<div class="col-sm-4 col-sm-offset-4">
-
+				
 				<div class="checkbox"  ng-repeat="todo in todos">
-                              
+				<div style="display:inline;">
+				<div style="display:inline;" ng-click="s(todo)">
+				<input type="button" value="Snooze" ng-show="!todo.s">
+				<input type = "button" value = "Unsnooze" ng-show="todo.s">
+				</div>		                              
 				<label ng-class = "{strike:abc}">
 				 <input  type="checkbox"  ng-model="abc" ng-change="check()" > {{ todo.text }}</span> 
                                     
 				<input type = "button" value = "Delete" ng-show ="abc" ng-click = "deleteTodo(todo._id)"></input>  
-			
+				</div>
 				</label>
-                                 </div>
+                                 
                              
 				<p class="text-center" ng-show="loading">
 					<span class="fa fa-spinner fa-spin fa-3x"></span>
 				</p>
-
+				</div>
 			</div>
 		</div>
 
