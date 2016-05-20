@@ -23,6 +23,7 @@
 		.checkfalse  {
 		    color: #000000;
 		}
+		.strike{ text-decoration: line-through; }
 	</style>
 
 	<!-- SPELLS -->
@@ -48,10 +49,10 @@
 
 				<div class="checkbox"  ng-repeat="todo in todos">
                               
-				<label>
-				 <input  type="checkbox" ng-checked="todo.done" ng-model="todo.confirmed" ng-change="checkbox(todo._id, todo.confirmed)" > <span class="check{{todo.done}}">{{ todo.text }}</span>
+				<label ng-class = "{strike:abc}">
+				 <input  type="checkbox"  ng-model="abc" ng-change="check()" > {{ todo.text }}</span> 
                                     
-				<input type = "button" value = "Delete"  ng-click = "deleteTodo(todo._id)"></input>  
+				<input type = "button" value = "Delete" ng-show ="abc" ng-click = "deleteTodo(todo._id)"></input>  
 			
 				</label>
                                  </div>

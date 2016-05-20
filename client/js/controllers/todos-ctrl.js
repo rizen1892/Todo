@@ -66,4 +66,14 @@ angular.module('todoController', [])
 
 
 
+$scope.check = function(){
+			if($scope.checked = false ){
+				$scope.checked = true; 
+			}
+			else{
+				$scope.checked = false; 
+			}
+		}
+
+
 	}]);
