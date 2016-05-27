@@ -10,8 +10,17 @@ angular.module('todoController', [])
 		// use the service to get all the todos
 		Todos.get()
 			.success(function(data) {
+				$scope.todoDone = 0;
+
+				for(var i = 0; i < data.length; i++) {
+					if(data[i].completed) 
+						$scope.todoDone++;
+				}
+				
 				$scope.todos = data;
 				$scope.loading = false;
+
+
 			});
 
 		// CREATE ==================================================================
@@ -35,67 +44,40 @@ angular.module('todoController', [])
 			}
 		};
 
-
-		$scope.deleteTodo = function(id) {		
-			$scope.loading = true;		
- 		
- 			Todos.delete(id)		
- 		// if successful creation, call our get function to get all the new todos		
- 				.success(function(data) {		
- 					$scope.loading = false;		
- 					$scope.todos = data; // assign our new list of todos		
-				});		
- 		};
-
-		$scope.checkbox = function(id,done){
-			console.log(done);
-
-
-			Todos.update(id, done)
-
-			.success(function(data){
-				$scope.loading = false;
-				$scope.formData = {}; // clear the form so our user is ready to enter another
-				$scope.todos = data;
-			});
-
-
-
-		};
-
-
-
-
-		$scope.check = function(){
-			if($scope.checked = false ){
-				$scope.checked = true; 
-			}
-			else{
-				$scope.checked = false; 
-			}
-		}
-
-		$scope.s = function(todoData) {
-			todoData.s = !todoData.s;
-		
-			Todos.update(todoData)
-				.success(function(res){
-					$scope.loading = false;	//turn off loading
-					console.log(res);
-				});
-		}
-
 		$scope.update = function(data) {
-			if(data.done) 
+			$scope.loading = true;
+			if(data.completed) 
 				$scope.todoDone++;
 			else
 				$scope.todoDone--;
-			// console.log(data);
 			Todos.update(data)
 				.success(function(res){
+					$scope.loading = false;
 					console.log(res);
 				});
 		}
 
+		$scope.snooze = function(data) {
+			data.snooze = !data.snooze;
+
+			Todos.update(data)
+				.success(function(res){
+					$scope.loading = false;
+					console.log(res);
+				});
+		}
+		
+		  $scope.deleteTodo = function(data) {
+                        $scope.loading = true;
+
+                                Todos.delete(data)
+                                .success(function(data) {
+                                        $scope.loading = false;
+                                        $scope.todoDone--;
+                                        $scope.todos = data; // assign our new list of todos            
+                                });
+                }
+
+		
 
 	}]);

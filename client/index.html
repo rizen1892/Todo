@@ -17,13 +17,7 @@
 		body 					{ padding-top:50px; }
 		#todo-list 				{ margin-bottom:30px; }
 		#todo-form 	 			{ margin-bottom:50px; }
-		.checktrue  {
-		    text-decoration: line-through;
-		}
-		.checkfalse  {
-		    color: #000000;
-		}
-		.strike{ text-decoration: line-through; }
+		.checked				{ text-decoration: line-through; }
 	</style>
 
 	<!-- SPELLS -->
@@ -40,31 +34,29 @@
 
 		<!-- HEADER AND TODO COUNT -->
 		<div class="jumbotron text-center">
-			<h1>I'm a Todo-app <span class="label label-info">{{ todos.length  }}</span></h1>
+			<h1>I'm a Todo-app <span class="label label-info">{{ todos.length }}</span></h1>
 		</div>
 
 		<!-- TODO LIST -->
 		<div id="todo-list" class="row">
 			<div class="col-sm-4 col-sm-offset-4">
 				
-				<div class="checkbox"  ng-repeat="todo in todos">
-				<div style="display:inline;">
-				<div style="display:inline;" ng-click="s(todo)">
-				<input type="button" value="Snooze" ng-show="!todo.s">
-				<input type = "button" value = "Unsnooze" ng-show="todo.s">
-				</div>		                              
-				<label ng-class = "{strike:abc}">
-				 <input  type="checkbox"  ng-model="abc" ng-change="check()" > {{ todo.text }}</span> 
-                                    
-				<input type = "button" value = "Delete" ng-show ="abc" ng-click = "deleteTodo(todo._id)"></input>  
+				 <h4 class="text-center">Task Completed:  {{todoDone}} out of {{ todos.length }} </h4>
+
+				<div class="checkbox" ng-repeat="todo in todos">
+				<div style="display:inline;" href="" ng-click="snooze(todo)">
+				<input type ="button" value = "Snooze" ng-show="!todo.snooze"></input>
+				<input type="button" value = "Unsnooze"ng-show="todo.snooze"></input>
 				</div>
-				</label>
-                                 
-                             
+                                <label ng-class="{'checked':todo.completed}">
+                                  <input type="checkbox" ng-change="update(todo)" ng-model="todo.completed"> {{ todo.text }}
+                                </label>
+                                <input type = "button" value = "Delete" ng-show ="todo.completed" ng-click = "deleteTodo(todo._id)"></input>
+			</div>      
 				<p class="text-center" ng-show="loading">
 					<span class="fa fa-spinner fa-spin fa-3x"></span>
 				</p>
-				</div>
+
 			</div>
 		</div>
 
